@@ -56,11 +56,11 @@ public class MoneyMarket extends Account
     */
    public void applyInterestAndFee()
    {
-         if(balance < MIN_BAL || withdrawals > WITHDRAW_LIMIT)
-         {
-            balance -= FEE;
-         }
-         balance = balance + (balance * APY) / MONTH_PER_YEAR;
+      if(balance < MIN_BAL || withdrawals > WITHDRAW_LIMIT)
+      {
+         balance -= FEE;
+      }
+      balance = balance + (balance * APY) / MONTH_PER_YEAR;
    }
    
    /**

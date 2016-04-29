@@ -431,8 +431,6 @@ public class TransactionManager extends javax.swing.JFrame {
                                              phoneNumberFieldText));
          if(added)
          {
-            dateOpenedField.setText(data.printDateMostRecent());
-            accountNumberField.setText(Integer.toString(data.recentAccNum()));
             visualData.add(data.peek());
             list.setListData(visualData);
          }
@@ -533,6 +531,10 @@ public class TransactionManager extends javax.swing.JFrame {
       directDeposit.setSelected(false);
    }//GEN-LAST:event_savingsActionPerformed
 
+   /**
+    * handles mechanics of button pressing
+    * @param evt 
+    */
    private void moneyMarketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moneyMarketActionPerformed
       specialSavingsAccount.setSelected(false);
       directDeposit.setSelected(false);
@@ -540,6 +542,11 @@ public class TransactionManager extends javax.swing.JFrame {
       directDeposit.setEnabled(false);
    }//GEN-LAST:event_moneyMarketActionPerformed
 
+   /**
+    * loads accounts from a input file and adds them to database and 
+    * jlist
+    * @param evt 
+    */
    private void loadAccountsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadAccountsActionPerformed
       
       try
@@ -610,12 +617,13 @@ public class TransactionManager extends javax.swing.JFrame {
                                        "ERROR",
                                        JOptionPane.ERROR_MESSAGE);
       }
-      
-      //String temp = stdin.readLine();
-      
       list.setListData(visualData);
    }//GEN-LAST:event_loadAccountsActionPerformed
 
+   /**
+    * deposits money in a given account, taken from a text field.
+    * @param evt 
+    */
    private void depositActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depositActionPerformed
       Account selected = (Account) list.getSelectedValue();
       try
@@ -631,8 +639,13 @@ public class TransactionManager extends javax.swing.JFrame {
          }
          else
          {
-            Double transactionAmount = Double.parseDouble(text);
+            Double transactionAmount = Double.parseDouble(text); 
+            if(transactionAmount >= 0)
+            {
             selected.credit(transactionAmount);
+            }
+            else
+               throw new NumberFormatException();
          }
       }
       catch(java.lang.NumberFormatException e)
@@ -653,11 +666,16 @@ public class TransactionManager extends javax.swing.JFrame {
       //transactionAmount.setText(null);
    }//GEN-LAST:event_depositActionPerformed
 
+   /**
+    * withdraws money from a specific selected account.
+    * @param evt 
+    */
    private void withdrawActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_withdrawActionPerformed
       Account selected = (Account) list.getSelectedValue();
       try
       {
          String text = this.transactionAmount.getText();
+         Double transactionAmount = Double.parseDouble(text);
          if(text.equals(""))
          {
             JOptionPane.showMessageDialog(new JFrame(),
@@ -665,10 +683,14 @@ public class TransactionManager extends javax.swing.JFrame {
                               "ERROR",
                               JOptionPane.ERROR_MESSAGE);
          }
+         else if (transactionAmount < 0)
+         {  
+            throw new NumberFormatException();        
+         }
          else
          {
             boolean mm = false;
-            Double transactionAmount = Double.parseDouble(text);
+            
             if(list.getSelectedValue() instanceof MoneyMarket)
             {
                MoneyMarket mmAccount = (MoneyMarket)list.getSelectedValue();
@@ -687,8 +709,6 @@ public class TransactionManager extends javax.swing.JFrame {
                                  "ERROR",
                                  JOptionPane.ERROR_MESSAGE);
          }
-
-         
       }
       catch(java.lang.NumberFormatException e)
       {
@@ -706,7 +726,6 @@ public class TransactionManager extends javax.swing.JFrame {
          
       }
       list.setListData(visualData);
-      //transactionAmount.setText(null);
    }//GEN-LAST:event_withdrawActionPerformed
 
    /**
@@ -752,9 +771,22 @@ public class TransactionManager extends javax.swing.JFrame {
       }
    }//GEN-LAST:event_showAccountsActionPerformed
 
+   /**
+    * applies monthly interest and fees to database and vector jlist 
+    * @param evt 
+    */
    private void runMonthlyInterestAndFeesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runMonthlyInterestAndFeesActionPerformed
-      data.runInterest();
-      list.setListData(visualData);
+      if(!visualData.isEmpty())
+      {
+         data.runInterest();
+         list.setListData(visualData);
+      }
+      else
+         JOptionPane.showMessageDialog(new JFrame(),
+                              "No Accounts in Database!",
+                              "ERROR",
+                              JOptionPane.ERROR_MESSAGE); 
+
    }//GEN-LAST:event_runMonthlyInterestAndFeesActionPerformed
 
    private void transactionAmountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transactionAmountActionPerformed

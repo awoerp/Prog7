@@ -44,13 +44,6 @@ public class Profile
     * returns profile information as a string
     * @return String
     */
-   /**
-   public String toString()
-   {
-      return("Name:                         " + name + "\n" +
-             "Phone:                        " + phone + "\n");
-   }
-   */
    public String toString()
    {
       return(name + "**" + phone + "**");

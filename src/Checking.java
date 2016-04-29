@@ -57,14 +57,14 @@ public class Checking extends Account
     */
    public void applyInterestAndFee()
    {
-         if(!directDeposit)
+      if(!directDeposit)
+      {
+         if(balance < MIN_BAL)
          {
-            if(balance < MIN_BAL)
-            {
-               balance -= FEE;
-            }
+            balance -= FEE;
          }
-         balance = balance + (balance * APY) / MONTH_PER_YEAR;
+      }
+      balance = balance + (balance * APY) / MONTH_PER_YEAR;
    }
 
    /**

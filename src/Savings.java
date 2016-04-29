@@ -59,18 +59,18 @@ public class Savings extends Account
     */
    public void applyInterestAndFee()
    {
-         if(balance < MIN_BAL)
-         {
-            balance -= FEE;
-         }
-         if(special)
-         {
-            balance = balance + (balance * APYS) / MONTH_PER_YEAR;
-         }
-         else
-         {
-            balance = balance + (balance * APY) / MONTH_PER_YEAR;
-         }
+      if(balance < MIN_BAL)
+      {
+         balance -= FEE;
+      }
+      if(special)
+      {
+         balance = balance + (balance * APYS) / MONTH_PER_YEAR;
+      }
+      else
+      {
+         balance = balance + (balance * APY) / MONTH_PER_YEAR;
+      }
    }
    
    /**

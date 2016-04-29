@@ -172,22 +172,42 @@ public class BankDataBase
       return(bank[num - 1]);
    }
    
+   /**
+    * deposits money to the account.
+    * @param accno int
+    * @param amount int
+    * @return account object
+    */
    public Account deposit(int accno, int amount) //deposit money to the account
    {
       return null;
    }
    
+    /**
+    * withdraws money to the account.
+    * @param accno int
+    * @param amount int
+    * @return account object
+    */
    public Account withdraw(int accno, int amount) //withdraw money from the account
    {
       return null;
    }
    
+   /**
+    * runs interest and fees on all accounts in database.
+    */
    public void runInterest() //applyInterestAndFee() for everyone
    {
       for(int i = 0; i < num; i++)
-   bank[i].applyInterestAndFee();
+         bank[i].applyInterestAndFee();
    }
    
+   /**
+    * compares two dates based on a date parameter.
+    * @param d Date 
+    * @return Vector of all dates less than the specified date.
+    */
    public Vector compareDates(Date d)
    {
       Vector<Account> accountsLessThanDate = new Vector<Account>();
