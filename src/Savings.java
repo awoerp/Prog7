@@ -82,9 +82,9 @@ public class Savings extends Account
    {
       String specialAccount;
       if(special)
-         specialAccount = "special";
+         specialAccount = "Special";
       else
-         specialAccount = "regular";
+         specialAccount = "Regular";
       return(holder.toString() + "AccNum: " + 
          Integer.toString(accNumber) + 
          " Type: Savings " + "**" + openOn.toString() + 
