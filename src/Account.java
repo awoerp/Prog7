@@ -20,8 +20,8 @@ public abstract class Account
    /**
     * This constructor is used when super is called on a sub class
     * it takes a name and phone number to create a profile object
-    * @param name String
-    * @param phone String
+    * @param name name of user
+    * @param phone phone number of user
     */
    public Account(String name, String phone)
    {
@@ -35,9 +35,9 @@ public abstract class Account
     * This constructor is used when super is called on a sub class
     * it takes a name and phone number to create a profile object, it also
     * takes an initial balance and date.
-    * @param name String
-    * @param phone String
-    * @param b float
+    * @param name name of user
+    * @param phone phone number of user
+    * @param b balance
     * @param d Date
     */
    public Account(String name, String phone, float b, Date d)
@@ -108,7 +108,7 @@ public abstract class Account
    
    /**
     * removes an amount of money from the balance
-    * @param amount double
+    * @param amount transaction amount
     * @return true if amount was subtracted, false if not
     */
    public boolean debit(double amount) //subtract the amount from the balance
@@ -124,7 +124,7 @@ public abstract class Account
    
     /**
     * Adds an amount of money to the balance
-    * @param amount double
+    * @param amount transaction amount
     */
    public void credit(double amount) //add the amount to the balance
    {

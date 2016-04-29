@@ -24,7 +24,7 @@ public class BankDataBase
 
    /**
     * finds an account index based on an account number
-    * @param accno int
+    * @param accno account number
     * @return index of account
     */
    private int find(int accno) //find the given account number; overloading
@@ -39,7 +39,7 @@ public class BankDataBase
       
    /**
     * Searches the bag for an account based on a specific account
-    * @param a Account object
+    * @param a Account to find
     * @return true if account is found that matches, false if not
     */
    private int find(Account a)
@@ -71,7 +71,7 @@ public class BankDataBase
    
    /**
     * adds an account to the bag
-    * @param a Account object
+    * @param a Account to add
     * @return true if it was successful, false if not
     */
    public boolean add(Account a) //add a to the list
@@ -87,7 +87,7 @@ public class BankDataBase
    
    /**
     * removes an account from the bag
-    * @param a Account object
+    * @param a Account to remove
     * @return true if successful, false if not.
     */
    public boolean remove(Account a) //remove a from the list
@@ -104,11 +104,6 @@ public class BankDataBase
       return true;
    }
    
-   public boolean remove(int accno) //remove an account based on accno; move everybody up
-   {
-      return false;
-   }
-   
    /**
     * checks to see if an account is in the bag
     * @param a Account Object
@@ -123,7 +118,7 @@ public class BankDataBase
    
    /**
     * returns all accounts in bag as one big string.
-    * @return string
+    * @return all accounts as a string
     */
    public String toString() //concatenate all accounts to a string using ‘\n’ as the delimiter
    {
@@ -137,7 +132,7 @@ public class BankDataBase
    
    /**
     * returns the size of the bag
-    * @return int
+    * @return current size of database
     */
    public int size() //return the number of accounts in the list 
    {
@@ -146,7 +141,7 @@ public class BankDataBase
   
    /**
     * returns the date of the most recent account added to the bag
-    * @return String
+    * @return date of most recent account added to bag
     */
    public String printDateMostRecent()
    {
@@ -156,7 +151,7 @@ public class BankDataBase
    /**
     * returns the account number of the most recent account added to the
     * bag
-    * @return int
+    * @return account number of most recent addition
     */
    public int recentAccNum()
    {
